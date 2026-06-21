@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Faizan Khadim | Digital Services Expert</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+<style>
+:root{
+  --red:#D92B2B;
+  --navy:#0D1B3E;
+  --gold:#F5A623;
+  --off:#F4F6FA;
+  --gray:#5A6070;
+  --light:#E4E8F0;
+  --dark-card:#1e293b;
+  --dark-border:#334155;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Figtree',sans-serif;color:var(--navy);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:12px 5vw;background:rgba(13,27,62,0.97);backdrop-filter:blur(12px);}
+.nav-logo img{height:42px;object-fit:contain;display:block;}
+.nav-links{display:flex;gap:22px;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.83rem;font-weight:600;letter-spacing:.2px;transition:color .2s;position:relative;padding-bottom:3px;}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .3s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+.nav-hire{background:var(--red);color:#fff;padding:9px 20px;border-radius:6px;font-size:0.83rem;font-weight:700;text-decoration:none;transition:background .2s;}
+.nav-hire:hover{background:#b81f1f;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.hamburger span{width:24px;height:2px;background:#fff;border-radius:2px;display:block;}
+.mobile-menu{display:none;position:fixed;top:66px;left:0;right:0;background:rgba(13,27,62,0.99);padding:20px 5vw;z-index:299;flex-direction:column;}
+.mobile-menu a{color:rgba(255,255,255,0.85);text-decoration:none;font-size:1rem;font-weight:600;padding:13px 0;border-bottom:1px solid rgba(255,255,255,0.07);display:block;}
+.mobile-menu.open{display:flex;}
+
+/* HERO - two column: left text + right profile photo */
+.hero{
+  min-height:auto;
+  background:var(--navy);
+  display:flex;align-items:center;
+  padding:100px 5vw 64px;
+  position:relative;overflow:hidden;
+}
+.hero-bg{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:0;}
+.hero-bg img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center center;
+  opacity:0.10;
+  display:block;
+}
+.hero-overlay{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  background:linear-gradient(
+    100deg,
+    rgba(13,27,62,0.98) 0%,
+    rgba(13,27,62,0.85) 50%,
+    rgba(13,27,62,0.40) 100%
+  );
+  z-index:1;
+}
+/* Two column wrapper */
+.hero-inner{
+  position:relative;z-index:2;
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:48px;
+  width:100%;
+  max-width:1200px;
+}
+.hero-content{max-width:640px;}
+
+/* Right side profile photo */
+.hero-photo-wrap{
+  position:relative;
+  flex-shrink:0;
+}
+.hero-photo{
+  width:280px;
+  height:340px;
+  object-fit:cover;
+  object-position:center;
+  border-radius:20px;
+  display:block;
+  border:2px solid rgba(217,43,43,0.35);
+  box-shadow:0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
+}
+.hero-photo-badge{
+  position:absolute;
+  bottom:-14px;
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--red);
+  color:#fff;
+  padding:7px 18px;
+  border-radius:100px;
+  font-size:.7rem;
+  font-weight:800;
+  letter-spacing:1px;
+  white-space:nowrap;
+  box-shadow:0 4px 16px rgba(217,43,43,0.5);
+}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(217,43,43,0.15);border:1px solid rgba(217,43,43,0.35);color:var(--gold);padding:6px 15px;border-radius:100px;font-size:0.72rem;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:22px;}
+.hero-eyebrow::before{content:'●';color:var(--red);font-size:0.45rem;}
+.hero h1{font-size:clamp(2.6rem,7vw,5.5rem);font-weight:900;color:#fff;line-height:1.0;margin-bottom:16px;letter-spacing:-1.5px;text-transform:uppercase;}
+.hero h1 .red{color:var(--red);}
+.hero-desc{color:rgba(255,255,255,0.63);font-size:.97rem;line-height:1.7;margin-bottom:28px;max-width:560px;}
+.hero-btns{display:flex;gap:11px;flex-wrap:wrap;margin-bottom:38px;}
+.btn-red{background:var(--red);color:#fff;padding:12px 26px;border-radius:7px;font-weight:700;font-size:.9rem;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:7px;font-family:'Figtree',sans-serif;}
+.btn-red:hover{background:#b81f1f;transform:translateY(-2px);}
+.btn-ghost{border:1.5px solid rgba(255,255,255,0.27);color:#fff;padding:12px 26px;border-radius:7px;font-weight:600;font-size:.9rem;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.btn-wa{display:inline-flex;align-items:center;gap:9px;background:#25D366;color:#fff;padding:12px 24px;border-radius:7px;font-weight:700;font-size:.9rem;text-decoration:none;transition:all .2s;}
+.btn-wa:hover{background:#1ebe5d;transform:translateY(-2px);}
+.hero-stats{display:flex;gap:28px;flex-wrap:wrap;padding-top:28px;border-top:1px solid rgba(255,255,255,0.1);}
+.stat-num{font-size:1.7rem;font-weight:900;color:#fff;letter-spacing:-.5px;}
+.stat-num span{color:var(--red);}
+.stat-lbl{font-size:.66rem;color:rgba(255,255,255,.37);text-transform:uppercase;letter-spacing:1px;margin-top:2px;font-weight:700;}
+
+/* TICKER */
+.ticker{background:var(--red);overflow:hidden;padding:10px 0;white-space:nowrap;}
+.ticker-inner{display:inline-flex;animation:ticker 32s linear infinite;}
+.ticker-item{color:#fff;font-size:.78rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:0 24px;}
+.ticker-item::after{content:'◆';margin-left:24px;opacity:.36;}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+.section{padding:80px 5vw;}
+.section-alt{background:var(--off);}
+.sec-label{font-size:.68rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
+.sec-title{font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:900;text-transform:uppercase;letter-spacing:-.5px;color:var(--navy);line-height:1.1;margin-bottom:13px;}
+.sec-sub{color:var(--gray);font-size:.94rem;line-height:1.68;max-width:520px;}
+.center{text-align:center;}
+.center .sec-sub{margin:0 auto;}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:center;}
+.about-logo-box{background:var(--navy);border-radius:16px;padding:40px 32px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;position:relative;overflow:hidden;min-height:320px;}
+.about-logo-box::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(217,43,43,.15) 0%,transparent 60%);}
+.about-logo-box img{width:190px;object-fit:contain;position:relative;z-index:1;}
+.avail-badge{position:absolute;top:14px;right:14px;background:var(--gold);color:var(--navy);padding:5px 11px;border-radius:6px;font-weight:800;font-size:.72rem;z-index:2;}
+.about-text p{color:var(--gray);line-height:1.75;margin-bottom:12px;font-size:.93rem;}
+.about-text strong{color:var(--navy);font-weight:700;}
+.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
+.tag{background:var(--light);color:var(--navy);padding:5px 12px;border-radius:5px;font-size:.76rem;font-weight:700;}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;}
+.srv-card{background:#fff;border:1.5px solid var(--light);border-radius:12px;overflow:hidden;transition:all .25s;position:relative;display:flex;flex-direction:column;}
+.srv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .3s;z-index:1;}
+.srv-card:hover{transform:translateY(-5px);box-shadow:0 16px 32px rgba(0,0,0,.08);border-color:transparent;}
+.srv-card:hover::before{transform:scaleX(1);}
+.srv-img{width:100%;height:180px;object-fit:cover;object-position:center;display:block;flex-shrink:0;}
+.srv-body{padding:18px 20px 22px;}
+.srv-card h3{font-size:.97rem;font-weight:800;margin-bottom:6px;}
+.srv-card p{color:var(--gray);font-size:.82rem;line-height:1.58;}
+
+/* PORTFOLIO */
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;}
+.port-card{border-radius:12px;overflow:hidden;border:1.5px solid var(--light);transition:all .25s;background:#fff;}
+.port-card:hover{transform:translateY(-5px);box-shadow:0 16px 32px rgba(0,0,0,.1);border-color:transparent;}
+.port-card img{width:100%;height:200px;object-fit:cover;object-position:center;display:block;}
+.port-body{padding:18px;}
+.port-cat{background:rgba(217,43,43,.1);color:var(--red);font-size:.66rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;padding:3px 8px;border-radius:4px;display:inline-block;margin-bottom:7px;}
+.port-body h3{font-weight:800;font-size:.95rem;margin-bottom:6px;}
+.port-body p{color:var(--gray);font-size:.81rem;line-height:1.58;}
+
+/* SKILLS */
+.skills-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px;}
+.skill-row{margin-bottom:18px;}
+.skill-top{display:flex;justify-content:space-between;margin-bottom:5px;}
+.skill-name{font-weight:700;font-size:.85rem;}
+.skill-pct{color:var(--red);font-weight:800;}
+.skill-bar{background:var(--light);border-radius:100px;height:6px;}
+.skill-fill{height:6px;border-radius:100px;background:linear-gradient(90deg,var(--red),#ff6b6b);width:0;transition:width 1.4s cubic-bezier(.4,0,.2,1);}
+.tools-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.tool-chip{background:var(--navy);color:#fff;padding:5px 13px;border-radius:100px;font-size:.74rem;font-weight:700;}
+
+/* STATS */
+.stats-band{background:var(--navy);padding:56px 5vw;}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center;}
+.stat-box{padding:24px 14px;}
+.stat-big{font-size:2.3rem;font-weight:900;color:#fff;letter-spacing:-1px;}
+.stat-big span{color:var(--red);}
+.stat-big .gold{color:var(--gold);}
+.stat-desc{color:rgba(255,255,255,.36);font-size:.7rem;text-transform:uppercase;letter-spacing:1px;margin-top:4px;font-weight:700;}
+
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px;}
+.testi-card{background:#fff;border:1.5px solid var(--light);border-radius:13px;padding:24px;}
+.stars{color:var(--gold);font-size:.9rem;margin-bottom:10px;letter-spacing:2px;}
+.testi-text{color:var(--gray);font-size:.85rem;line-height:1.65;font-style:italic;margin-bottom:16px;}
+.testi-author{display:flex;align-items:center;gap:10px;}
+.testi-av{width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--light);}
+.testi-name{font-weight:800;font-size:.84rem;}
+.testi-role{color:var(--gray);font-size:.72rem;margin-top:1px;}
+.testi-cta{background:var(--navy);border-radius:13px;padding:28px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.testi-cta .big{font-size:2.4rem;font-weight:900;color:#fff;letter-spacing:-1px;}
+.testi-cta .big span{color:var(--red);}
+
+/* TRAINING */
+.training-sec{background:var(--navy);padding:80px 5vw;}
+.training-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.t-label{color:var(--gold);font-size:.68rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:9px;}
+.t-title{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;color:#fff;line-height:1.16;margin-bottom:14px;text-transform:uppercase;letter-spacing:-.5px;}
+.t-title span{color:var(--red);}
+.t-desc{color:rgba(255,255,255,.56);line-height:1.68;margin-bottom:24px;font-size:.92rem;}
+.t-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:26px;}
+.t-list li{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.76);font-size:.88rem;font-weight:500;}
+.t-list li::before{content:'✓';width:20px;height:20px;background:rgba(217,43,43,.2);border:1px solid rgba(217,43,43,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:.66rem;font-weight:900;flex-shrink:0;}
+.t-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:13px;padding:30px;backdrop-filter:blur(10px);}
+.t-card h3{font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:6px;}
+.t-card p{color:rgba(255,255,255,.46);font-size:.83rem;margin-bottom:20px;line-height:1.58;}
+.t-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--red);color:#fff;padding:13px 20px;border-radius:8px;font-weight:700;font-size:.9rem;text-decoration:none;transition:all .2s;width:100%;}
+.t-btn:hover{background:#b81f1f;transform:translateY(-2px);}
+.t-note{color:rgba(255,255,255,.26);font-size:.72rem;text-align:center;margin-top:9px;}
+
+/* SOCIAL CONNECT SECTION */
+.social-connect{background:var(--navy);padding:80px 5vw;}
+.social-connect .sec-title{color:#fff;}
+.social-connect .sec-label{color:var(--gold);}
+.social-connect .sec-sub{color:rgba(255,255,255,.5);}
+.social-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:13px;margin-top:8px;}
+.social-card{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:11px;background:#fff;border:1.5px solid var(--light);text-decoration:none;color:var(--navy);transition:all .25s;position:relative;overflow:hidden;}
+.social-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px;transition:width .3s;}
+.social-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.09);border-color:transparent;}
+.social-card:hover::before{width:4px;}
+.social-card i{font-size:24px;width:28px;flex-shrink:0;}
+.social-card h3{font-size:.9rem;font-weight:700;margin-bottom:2px;letter-spacing:.1px;color:var(--navy);}
+.social-card p{color:var(--gray);font-size:.78rem;}
+/* Platform accent colors */
+.sc-li i{color:#0A66C2;} .sc-li::before{background:#0A66C2;}
+.sc-gh i{color:#24292e;} .sc-gh::before{background:#6e5494;}
+.sc-yt i{color:#FF0000;} .sc-yt::before{background:#FF0000;}
+.sc-insta i{color:#E1306C;} .sc-insta::before{background:linear-gradient(180deg,#833ab4,#fd1d1d,#fcb045);}
+.sc-tik i{color:#010101;} .sc-tik::before{background:linear-gradient(180deg,#69C9D0,#EE1D52);}
+.sc-snap i{color:#FFAB00;} .sc-snap::before{background:#FFFC00;}
+.sc-pin i{color:#E60023;} .sc-pin::before{background:#E60023;}
+.sc-wa i{color:#25D366;} .sc-wa::before{background:#25D366;}
+.sc-email i{color:var(--gray);} .sc-email::before{background:var(--gold);}
+
+/* YouTube Subscribe */
+.yt-sub-wrap{display:flex;justify-content:center;margin-top:28px;}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px;}
+.price-card{border:1.5px solid var(--light);border-radius:13px;padding:28px 22px;text-align:center;transition:all .25s;position:relative;background:#fff;display:flex;flex-direction:column;}
+.price-card.feat{background:var(--navy);border-color:var(--navy);color:#fff;transform:scale(1.03);}
+.feat-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--navy);padding:3px 14px;border-radius:100px;font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;white-space:nowrap;}
+.price-name{font-size:.68rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray);margin-bottom:11px;}
+.feat .price-name{color:rgba(255,255,255,.44);}
+.price-amount{font-size:1.7rem;font-weight:900;color:var(--navy);margin-bottom:5px;letter-spacing:-.5px;}
+.feat .price-amount{color:#fff;}
+.price-desc{color:var(--gray);font-size:.78rem;margin:5px 0 18px;line-height:1.5;}
+.feat .price-desc{color:rgba(255,255,255,.46);}
+.price-features{list-style:none;margin-bottom:22px;text-align:left;flex:1;}
+.price-features li{padding:7px 0;border-bottom:1px solid var(--light);font-size:.81rem;color:var(--navy);display:flex;align-items:flex-start;gap:7px;}
+.price-features li::before{content:'✓';color:var(--red);font-weight:800;flex-shrink:0;margin-top:1px;}
+.feat .price-features li{border-color:rgba(255,255,255,.08);color:rgba(255,255,255,.74);}
+.feat .price-features li::before{color:var(--gold);}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:40px;}
+.c-info h3{font-size:1.3rem;font-weight:800;margin-bottom:11px;letter-spacing:-.3px;}
+.c-info>p{color:var(--gray);line-height:1.68;margin-bottom:24px;font-size:.92rem;}
+.c-item{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--light);}
+.c-icon{width:38px;height:38px;background:rgba(217,43,43,.09);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.c-lbl{font-size:.66rem;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;font-weight:700;}
+.c-val{font-weight:700;font-size:.88rem;color:var(--navy);}
+.c-val a{color:var(--navy);text-decoration:none;}
+.c-val a:hover{color:var(--red);}
+.wa-box{background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:11px;padding:18px 20px;margin-top:20px;display:flex;align-items:flex-start;gap:13px;}
+.wa-box-icon{width:46px;height:46px;background:#25D366;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.wa-box-text h4{font-weight:800;font-size:.88rem;margin-bottom:3px;}
+.wa-box-text p{font-size:.76rem;color:var(--gray);}
+.wa-msg-btn{margin-top:9px;display:inline-flex;align-items:center;gap:6px;background:#25D366;color:#fff;padding:8px 16px;border-radius:6px;font-weight:700;font-size:.82rem;text-decoration:none;transition:background .2s;}
+.wa-msg-btn:hover{background:#1ebe5d;}
+.c-form{display:flex;flex-direction:column;gap:13px;}
+.fg{display:flex;flex-direction:column;gap:5px;}
+.fg label{font-size:.76rem;font-weight:700;color:var(--navy);}
+.fg input,.fg textarea,.fg select{padding:10px 13px;border:1.5px solid var(--light);border-radius:7px;font-family:'Figtree',sans-serif;font-size:.86rem;color:var(--navy);background:#fff;transition:border-color .2s;outline:none;}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--red);}
+.fg textarea{resize:vertical;min-height:96px;}
+.submit-btn{background:var(--navy);color:#fff;padding:12px 24px;border:none;border-radius:7px;font-weight:800;font-size:.9rem;cursor:pointer;transition:all .2s;font-family:'Figtree',sans-serif;}
+.submit-btn:hover{background:var(--red);}
+
+/* FOOTER */
+footer{background:var(--navy);padding:44px 5vw 22px;text-align:center;}
+.footer-logo img{height:48px;object-fit:contain;margin:0 auto 10px;display:block;}
+.footer-tagline{color:rgba(255,255,255,.36);font-size:.78rem;margin-bottom:22px;font-weight:500;}
+.footer-nav{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:13px;}
+.footer-nav a{color:rgba(255,255,255,.44);text-decoration:none;font-size:.78rem;font-weight:600;transition:color .2s;}
+.footer-nav a:hover{color:var(--gold);}
+.footer-socials{display:flex;justify-content:center;gap:9px;margin-bottom:22px;flex-wrap:wrap;}
+.soc-btn{display:inline-flex;align-items:center;gap:5px;color:rgba(255,255,255,.52);text-decoration:none;font-size:.76rem;padding:5px 12px;border:1px solid rgba(255,255,255,.11);border-radius:6px;transition:all .2s;font-weight:600;}
+.soc-btn:hover{border-color:var(--gold);color:var(--gold);}
+.footer-copy{border-top:1px solid rgba(255,255,255,.07);padding-top:18px;color:rgba(255,255,255,.26);font-size:.72rem;}
+
+/* FLOATING */
+.float-wrap{position:fixed;bottom:22px;right:18px;z-index:999;display:flex;flex-direction:column;gap:10px;align-items:flex-end;}
+.f-hire{background:var(--red);color:#fff;padding:11px 18px;border-radius:50px;font-weight:800;font-size:.82rem;text-decoration:none;box-shadow:0 4px 16px rgba(217,43,43,.5);transition:all .2s;white-space:nowrap;font-family:'Figtree',sans-serif;}
+.f-hire:hover{transform:translateY(-2px);}
+.f-wa{width:48px;height:48px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,.45);transition:all .2s;}
+.f-wa:hover{transform:translateY(-2px);}
+
+/* FADE UP */
+.fu{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.fu.vis{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:1000px){
+  .services-grid,.portfolio-grid,.pricing-grid,.testi-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:900px){
+  .about-grid,.training-grid,.contact-grid{grid-template-columns:1fr;gap:28px;}
+  .skills-wrap{grid-template-columns:1fr;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .price-card.feat{transform:scale(1);}
+  .hero-inner{grid-template-columns:1fr;gap:32px;}
+  .hero-photo{width:220px;height:270px;margin:0 auto;}
+  .hero-photo-wrap{display:flex;justify-content:center;}
+}
+@media(max-width:640px){
+  .nav-links,.nav-hire{display:none;}
+  .hamburger{display:flex;}
+  .hero{padding:84px 5vw 46px;min-height:auto;}
+  .hero h1{font-size:clamp(2.2rem,10vw,3.4rem);}
+  .hero-btns{flex-direction:column;gap:9px;}
+  .btn-red,.btn-ghost,.btn-wa{width:100%;text-align:center;justify-content:center;}
+  .hero-stats{gap:18px;}
+  .hero-photo{width:180px;height:220px;}
+  .services-grid,.portfolio-grid,.pricing-grid,.testi-grid{grid-template-columns:1fr;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .social-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><img src="logo.webp" alt="Faizan Khadim"/></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#training">Training</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-hire">Hire Me</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#portfolio" onclick="closeMenu()">Portfolio</a>
+  <a href="#skills" onclick="closeMenu()">Skills</a>
+  <a href="#reviews" onclick="closeMenu()">Reviews</a>
+  <a href="#training" onclick="closeMenu()">Training</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"><img src="cover.jpg" alt=""/></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Turning Ideas Into Digital Impact</div>
+      <h1>Faizan <span class="red">Khadim</span></h1>
+      <p class="hero-desc">Video Editor &amp; Content Creator &nbsp;·&nbsp; Graphic Designer &nbsp;·&nbsp; Social Media Manager &nbsp;·&nbsp; Digital Services Provider — helping brands &amp; businesses grow measurably online.</p>
+      <div class="hero-btns">
+        <a href="#services" class="btn-red">Explore Services</a>
+        <a href="https://wa.me/923125446861?text=Hi%20Faizan%2C%20I%20want%20to%20hire%20you!" target="_blank" class="btn-wa">
+          <i class="fab fa-whatsapp"></i> WhatsApp Me
+        </a>
+        <a href="#contact" class="btn-ghost">Get a Quote</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">75<span>+</span></div><div class="stat-lbl">Happy Clients</div></div>
+        <div><div class="stat-num">150<span>+</span></div><div class="stat-lbl">Projects Done</div></div>
+        <div><div class="stat-num">7<span>+</span></div><div class="stat-lbl">Years Experience</div></div>
+        <div><div class="stat-num">5<span>★</span></div><div class="stat-lbl">Client Rating</div></div>
+      </div>
+    </div>
+    <!-- RIGHT: Cover/Brand Image -->
+    <div class="hero-photo-wrap">
+      <img src="cover.jpg" alt="Faizan Khadim" class="hero-photo"/>
+      <div class="hero-photo-badge">⚡ Available for Work</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Video Editing</span><span class="ticker-item">Adobe Premiere Pro</span><span class="ticker-item">Graphic Design</span><span class="ticker-item">Adobe Photoshop</span><span class="ticker-item">Corel Draw</span><span class="ticker-item">OBS Studio</span><span class="ticker-item">Social Media Marketing</span><span class="ticker-item">Canva Pro</span><span class="ticker-item">SEO</span><span class="ticker-item">In-Page Urdu</span><span class="ticker-item">Website Design</span><span class="ticker-item">CV &amp; Resume</span><span class="ticker-item">Meta Ads</span><span class="ticker-item">Google Ads</span><span class="ticker-item">Live Streaming</span><span class="ticker-item">Virtual Assistance</span><span class="ticker-item">Video Editing</span><span class="ticker-item">Adobe Premiere Pro</span><span class="ticker-item">Graphic Design</span><span class="ticker-item">Adobe Photoshop</span><span class="ticker-item">Corel Draw</span><span class="ticker-item">OBS Studio</span><span class="ticker-item">Social Media Marketing</span><span class="ticker-item">Canva Pro</span><span class="ticker-item">SEO</span><span class="ticker-item">In-Page Urdu</span><span class="ticker-item">Website Design</span><span class="ticker-item">CV &amp; Resume</span><span class="ticker-item">Meta Ads</span><span class="ticker-item">Google Ads</span><span class="ticker-item">Live Streaming</span><span class="ticker-item">Virtual Assistance</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="about-grid fu">
+    <div class="about-logo-box">
+      <div class="avail-badge">✦ Open to Work</div>
+      <img src="logo.webp" alt="Faizan Khadim Logo"/>
+    </div>
+    <div class="about-text">
+      <div class="sec-label">About Me</div>
+      <h2 class="sec-title">Building Strong Digital Presence</h2>
+      <p>I am <strong>Faizan Khadim</strong> — a multi-skilled digital professional with <strong>7+ years of experience</strong> based in Pakistan. I help individuals, brands, and businesses build a strong digital presence through strategic content creation, high-quality video editing, creative design, and result-driven social media management.</p>
+      <p>I specialize in professional video production, brand identity design, multilingual content, CV/Resume design, website design, live streaming setup, and full social media management across all major platforms.</p>
+      <p>Platforms: <strong>Facebook · Instagram · TikTok · Snapchat · YouTube · X · LinkedIn</strong></p>
+      <div class="about-tags">
+        <span class="tag">📍 Pakistan</span>
+        <span class="tag">💻 Remote / Hybrid / On-site</span>
+        <span class="tag">🌍 Global Clients</span>
+        <span class="tag">⚡ Open to Work</span>
+        <span class="tag">🎓 7+ Years Experience</span>
+        <span class="tag">📚 Digital Skills Trainer</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section section-alt" id="services">
+  <div class="center fu">
+    <div class="sec-label">What I Offer</div>
+    <h2 class="sec-title">Professional Services</h2>
+    <p class="sec-sub">End-to-end digital solutions tailored to help your brand grow online</p>
+  </div>
+  <div class="services-grid fu">
+    <div class="srv-card">
+      <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=380&fit=crop&crop=center" alt="Video Editing" class="srv-img"/>
+      <div class="srv-body"><h3>Video Editing & Production</h3><p>Professional editing in 8K/4K/2K/FHD — color grading, transitions, sound design, motion graphics for YouTube, Reels, TikTok &amp; Shorts using Adobe Premiere Pro &amp; DaVinci Resolve.</p></div>
+    </div>
+    <div class="srv-card">
+      <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=380&fit=crop&crop=center" alt="Graphic Design" class="srv-img"/>
+      <div class="srv-body"><h3>Graphic Design & Brand Identity</h3><p>Logos, brand kits, social posts, banners, flyers, posters, thumbnails &amp; QR Code design using Adobe Photoshop, Corel Draw, Canva Pro and In-Page for multilingual content.</p></div>
+    </div>
+    <div class="srv-card">
+      <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=380&fit=crop&crop=center" alt="Social Media" class="srv-img"/>
+      <div class="srv-body"><h3>Social Media Management</h3><p>Full management of Facebook, Instagram, TikTok, YouTube, LinkedIn, Snapchat &amp; X — content calendars, scheduling via Buffer &amp; Hootsuite, community management &amp; analytics.</p></div>
+    </div>
+    <div class="srv-card">
+      <img src="https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=600&h=380&fit=crop&crop=center" alt="Digital Marketing" class="srv-img"/>
+      <div class="srv-body"><h3>Digital Marketing & SEO</h3><p>Search Engine Optimization, Google Ads, Meta Business Ads, paid campaigns, keyword research using SEMrush, competitor analysis and data-driven growth strategies.</p></div>
+    </div>
+    <div class="srv-card">
+      <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&h=380&fit=crop&crop=center" alt="Website Design" class="srv-img"/>
+      <div class="srv-body"><h3>Website Design</h3><p>Professional, mobile-responsive website design for portfolios, businesses and brands using WordPress, Wix and custom HTML/CSS — fast, SEO-optimized with clean modern layouts.</p></div>
+    </div>
+    <div class="srv-card">
+      <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&h=380&fit=crop&crop=center" alt="CV Resume" class="srv-img"/>
+      <div class="srv-body"><h3>CV & Resume Design</h3><p>Professional, ATS-friendly CV and resume design — modern layouts, multilingual versions, tailored for any industry or job role.</p></div>
+    </div>
+    <div class="srv-card">
+      <img src="https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=600&h=380&fit=crop&crop=center" alt="Content Creation" class="srv-img"/>
+      <div class="srv-body"><h3>Content Creation & Strategy</h3><p>Scroll-stopping, engaging content with a consistent brand voice — multilingual content, caption writing, hashtag strategy and platform-specific optimization.</p></div>
+    </div>
+    <div class="srv-card">
+      <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600&h=380&fit=crop&crop=center" alt="Live Streaming" class="srv-img"/>
+      <div class="srv-body"><h3>Live Streaming Setup (OBS)</h3><p>Complete OBS Studio setup for YouTube, Facebook, TikTok &amp; Twitch — scene design, overlays, alerts, audio/video configuration and full broadcast management.</p></div>
+    </div>
+    <div class="srv-card">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=380&fit=crop&crop=center" alt="Virtual Assistant" class="srv-img"/>
+      <div class="srv-body"><h3>Virtual Assistance</h3><p>Remote business support — scheduling, inbox management, daily posting, data entry, research, reporting and complete online business operations management.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="section" id="portfolio">
+  <div class="center fu">
+    <div class="sec-label">My Work</div>
+    <h2 class="sec-title">Featured Portfolio</h2>
+    <p class="sec-sub">Real projects delivered for clients across Pakistan and globally</p>
+  </div>
+  <div class="portfolio-grid fu">
+    <div class="port-card">
+      <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=600&h=380&fit=crop&crop=center" alt="Brand Identity"/>
+      <div class="port-body"><span class="port-cat">Brand Identity</span><h3>Restaurant Complete Brand Package</h3><p>Full brand identity — logo, menu, social templates, business cards, outdoor banners and brand guidelines in Corel Draw &amp; Adobe Photoshop.</p></div>
+    </div>
+    <div class="port-card">
+      <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=380&fit=crop&crop=center" alt="Video Production"/>
+      <div class="port-body"><span class="port-cat">Video Production</span><h3>4K Brand Promo Video Series</h3><p>Full promotional video series — scripting, 4K editing, color grading, sound design and final delivery across all platforms.</p></div>
+    </div>
+    <div class="port-card">
+      <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=380&fit=crop&crop=center" alt="Website Design"/>
+      <div class="port-body"><span class="port-cat">Website Design</span><h3>Multi-Page Business Website — Full Build</h3><p>Complete custom website design and deployment — mobile-responsive, SEO optimized, fast-loading with contact form, Google Analytics and gallery integration.</p></div>
+    </div>
+    <div class="port-card">
+      <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=600&h=380&fit=crop&crop=center" alt="CV Design"/>
+      <div class="port-body"><span class="port-cat">CV & Resume</span><h3>50+ Professional CV Design Projects</h3><p>Designed 50+ CVs — ATS-friendly layouts, multilingual versions tailored per industry and role.</p></div>
+    </div>
+    <div class="port-card">
+      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=380&fit=crop&crop=center" alt="Digital Marketing"/>
+      <div class="port-body"><span class="port-cat">Digital Marketing</span><h3>E-commerce Google & Meta Ads Campaign</h3><p>Full Google Ads + Meta Ads campaign — keyword targeting, A/B ad testing, audience segmentation. 3x ROAS in 60 days.</p></div>
+    </div>
+    <div class="port-card">
+      <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600&h=380&fit=crop&crop=center" alt="Live Streaming"/>
+      <div class="port-body"><span class="port-cat">Live Streaming</span><h3>OBS Studio Live Setup & Broadcast</h3><p>Professional OBS live streaming setup — custom overlays, alerts, multi-platform simultaneous broadcast. Live audience grew 5x.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section section-alt" id="skills">
+  <div class="center fu">
+    <div class="sec-label">Expertise</div>
+    <h2 class="sec-title">Core Skills</h2>
+    <p class="sec-sub">7+ years of hands-on experience across design, video, marketing and web</p>
+  </div>
+  <div class="skills-wrap fu">
+    <div>
+      <div class="skill-row"><div class="skill-top"><span class="skill-name">Video Editing & Production (8K/4K/2K/FHD)</span><span class="skill-pct">96%</span></div><div class="skill-bar"><div class="skill-fill" data-width="96"></div></div></div>
+      <div class="skill-row"><div class="skill-top"><span class="skill-name">Graphic Design & Brand Identity</span><span class="skill-pct">93%</span></div><div class="skill-bar"><div class="skill-fill" data-width="93"></div></div></div>
+      <div class="skill-row"><div class="skill-top"><span class="skill-name">Social Media Management & Growth</span><span class="skill-pct">94%</span></div><div class="skill-bar"><div class="skill-fill" data-width="94"></div></div></div>
+      <div class="skill-row"><div class="skill-top"><span class="skill-name">Adobe Photoshop & Corel Draw</span><span class="skill-pct">91%</span></div><div class="skill-bar"><div class="skill-fill" data-width="91"></div></div></div>
+      <div class="skill-row"><div class="skill-top"><span class="skill-name">Content Creation (Multilingual)</span><span class="skill-pct">95%</span></div><div class="skill-bar"><div class="skill-fill" data-width="95"></div></div></div>
+      <div class="skill-row"><div class="skill-top"><span class="skill-name">Website Design</span><span class="skill-pct">82%</span></div><div class="skill-bar"><div class="skill-fill" data-width="82"></div></div></div>
+    </div>
+    <div>
+      <div class="skill-row"><div class="skill-top"><span class="skill-name">SEO & Digital Marketing</span><span class="skill-pct">87%</span></div><div class="skill-bar"><div class="skill-fill" data-width="87"></div></div></div>
+      <div class="skill-row"><div class="skill-top"><span class="skill-name">Meta Ads & Google Ads</span><span class="skill-pct">85%</span></div><div class="skill-bar"><div class="skill-fill" data-width="85"></div></div></div>
+      <div class="skill-row"><div class="skill-top"><span class="skill-name">Canva Pro</span><span class="skill-pct">97%</span></div><div class="skill-bar"><div class="skill-fill" data-width="97"></div></div></div>
+      <div class="skill-row"><div class="skill-top"><span class="skill-name">CV & Resume Design</span><span class="skill-pct">92%</span></div><div class="skill-bar"><div class="skill-fill" data-width="92"></div></div></div>
+      <div class="skill-row"><div class="skill-top"><span class="skill-name">Virtual Assistance & Administration</span><span class="skill-pct">90%</span></div><div class="skill-bar"><div class="skill-fill" data-width="90"></div></div></div>
+      <div class="skill-row"><div class="skill-top"><span class="skill-name">Live Streaming (OBS Studio)</span><span class="skill-pct">88%</span></div><div class="skill-bar"><div class="skill-fill" data-width="88"></div></div></div>
+    </div>
+  </div>
+  <div class="fu" style="margin-top:40px;">
+    <p style="font-size:.7rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:13px;">Tools & Platforms</p>
+    <div class="tools-grid">
+      <span class="tool-chip">Adobe Premiere Pro</span><span class="tool-chip">Adobe Photoshop</span><span class="tool-chip">Adobe Lightroom</span><span class="tool-chip">DaVinci Resolve</span><span class="tool-chip">CapCut Pro</span><span class="tool-chip">OBS Studio</span><span class="tool-chip">Corel Draw</span><span class="tool-chip">Canva Pro</span><span class="tool-chip">In-Page Urdu</span><span class="tool-chip">Meta Business Suite</span><span class="tool-chip">Google Analytics</span><span class="tool-chip">Google Search Console</span><span class="tool-chip">Google Ads</span><span class="tool-chip">SEMrush</span><span class="tool-chip">Buffer</span><span class="tool-chip">Hootsuite</span><span class="tool-chip">Later</span><span class="tool-chip">Mailchimp</span><span class="tool-chip">WordPress</span><span class="tool-chip">Wix</span><span class="tool-chip">Microsoft Office</span><span class="tool-chip">Google Workspace</span><span class="tool-chip">Trello</span><span class="tool-chip">Notion</span><span class="tool-chip">Facebook</span><span class="tool-chip">Instagram</span><span class="tool-chip">TikTok</span><span class="tool-chip">YouTube Studio</span><span class="tool-chip">LinkedIn</span><span class="tool-chip">Snapchat</span><span class="tool-chip">X (Twitter)</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stats-grid fu">
+    <div class="stat-box"><div class="stat-big" data-count="75">0<span>+</span></div><div class="stat-desc">Happy Clients</div></div>
+    <div class="stat-box"><div class="stat-big" data-count="150">0<span>+</span></div><div class="stat-desc">Projects Completed</div></div>
+    <div class="stat-box"><div class="stat-big" data-count="7">0<span>+</span></div><div class="stat-desc">Years Experience</div></div>
+    <div class="stat-box"><div class="stat-big">5<span class="gold">★</span></div><div class="stat-desc">Average Rating</div></div>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<section class="section section-alt" id="reviews">
+  <div class="center fu">
+    <div class="sec-label">Client Reviews</div>
+    <h2 class="sec-title">What Clients Say</h2>
+    <p class="sec-sub">Trusted by brands, creators and businesses across Pakistan and globally — here's what they say</p>
+  </div>
+  <div class="testi-grid fu">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Faizan transformed our restaurant's social media completely. Facebook and Instagram engagement went up 300% in 2 months. Professional, creative and always on time!"</p>
+      <div class="testi-author">
+        <img class="testi-av" src="https://i.pravatar.cc/100?img=11" alt="Ahmed Khan"/>
+        <div><div class="testi-name">Ahmed Khan</div><div class="testi-role">Restaurant Owner · Lahore</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Outstanding video editing! Faizan delivered our product videos in 4K with perfect color grading. He knows exactly what looks good on screen. Highly recommended!"</p>
+      <div class="testi-author">
+        <img class="testi-av" src="https://i.pravatar.cc/100?img=5" alt="Sara Raza"/>
+        <div><div class="testi-name">Sara Raza</div><div class="testi-role">YouTuber & Creator · Karachi</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Faizan designed our complete brand identity — logo, colors, business cards and social templates. Everything was pixel-perfect. Will definitely work together again!"</p>
+      <div class="testi-author">
+        <img class="testi-av" src="https://i.pravatar.cc/100?img=53" alt="Usman Malik"/>
+        <div><div class="testi-name">Usman Malik</div><div class="testi-role">Clothing Brand Owner · Faisalabad</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"CV redesigned by Faizan and I got called for interview in a week! Clean, professional layout professional and multilingual. Absolutely great work, highly recommend!"</p>
+      <div class="testi-author">
+        <img class="testi-av" src="https://i.pravatar.cc/100?img=47" alt="Zara Ali"/>
+        <div><div class="testi-name">Zara Ali</div><div class="testi-role">Job Seeker · Islamabad</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Faizan ran our Google and Meta Ads professionally — targeting, creatives, A/B testing all handled. Our sales doubled in 60 days. Best investment we made!"</p>
+      <div class="testi-author">
+        <img class="testi-av" src="https://i.pravatar.cc/100?img=68" alt="James Wilson"/>
+        <div><div class="testi-name">James Wilson</div><div class="testi-role">E-commerce Owner · USA</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Excellent OBS live streaming setup! Everything configured perfectly — overlays, scenes, alerts. Our live audience grew 5x in the first month. Brilliant work Faizan!"</p>
+      <div class="testi-author">
+        <img class="testi-av" src="https://i.pravatar.cc/100?img=32" alt="David M."/>
+        <div><div class="testi-name">David M.</div><div class="testi-role">Content Creator · UK</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Amazing website design! Faizan built our portfolio site in just a few days — fast, mobile-friendly, SEO optimized. Got our first client inquiry within a week of launch!"</p>
+      <div class="testi-author">
+        <img class="testi-av" src="https://i.pravatar.cc/100?img=15" alt="Sophie L."/>
+        <div><div class="testi-name">Sophie L.</div><div class="testi-role">Freelance Photographer · Germany</div></div>
+      </div>
+    </div>
+    <div class="testi-cta">
+      <div class="big">75<span>+</span></div>
+      <p style="color:rgba(255,255,255,.46);font-size:.8rem;margin:4px 0 9px;">Satisfied Clients Worldwide</p>
+      <div style="color:var(--gold);font-size:1.1rem;letter-spacing:3px;">★★★★★</div>
+      <p style="color:rgba(255,255,255,.28);font-size:.72rem;margin-top:6px;">5.0 Average Rating</p>
+      <a href="https://wa.me/923125446861?text=Hi%20Faizan%2C%20I%20want%20to%20work%20with%20you!" target="_blank" style="margin-top:16px;display:inline-flex;align-items:center;gap:6px;background:var(--red);color:#fff;padding:10px 18px;border-radius:7px;font-weight:700;font-size:.82rem;text-decoration:none;">Become a Client</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRAINING -->
+<section class="training-sec" id="training">
+  <div class="training-grid fu">
+    <div>
+      <div class="t-label">Free Program</div>
+      <h2 class="t-title">Digital Skills <span>Training</span> Program</h2>
+      <p class="t-desc">Learn professional digital skills from a 7+ year industry expert. Practical, hands-on sessions for students and professionals who want to build a digital career.</p>
+      <ul class="t-list">
+        <li>Video Editing — Adobe Premiere Pro & CapCut</li>
+        <li>Graphic Design — Photoshop, Corel Draw, Canva</li>
+        <li>Social Media Marketing & Strategy</li>
+        <li>SEO, Google Ads & Meta Ads</li>
+        <li>Website Design Basics</li>
+        <li>CV/Resume Design & Freelancing</li>
+        <li>Live Streaming Setup with OBS Studio</li>
+      </ul>
+    </div>
+    <div class="t-card">
+      <h3>Register for Training</h3>
+      <p>Secure your spot in the upcoming Digital Skills Training batch. Online sessions — join from anywhere in Pakistan.</p>
+      <a href="https://forms.gle/JhdFXinaThx2tZoA9" target="_blank" class="t-btn">Enroll Now — It's Free</a>
+      <p class="t-note">Limited seats · 100% Online · Open Worldwide</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="center fu">
+    <div class="sec-label">Pricing</div>
+    <h2 class="sec-title">Transparent Packages</h2>
+    <p class="sec-sub">Flexible pricing for every project size — contact for exact quote</p>
+  </div>
+  <div class="pricing-grid fu">
+    <div class="price-card">
+      <div class="price-name">Basic</div>
+      <div class="price-amount">On Request</div>
+      <div class="price-desc">Single service · Small tasks</div>
+      <ul class="price-features">
+        <li>1 Service (Design / Edit / Post)</li>
+        <li>2 Revisions included</li>
+        <li>24–48 hour delivery</li>
+        <li>WhatsApp communication</li>
+        <li>Final file delivery</li>
+      </ul>
+      <a href="https://wa.me/923125446861?text=Hi%20Faizan%2C%20basic%20package%20quote!" target="_blank" class="btn-red" style="display:block;text-align:center;margin-top:auto;justify-content:center;">Get a Quote</a>
+    </div>
+    <div class="price-card feat">
+      <div class="feat-badge">Most Popular</div>
+      <div class="price-name">Professional</div>
+      <div class="price-amount">Custom</div>
+      <div class="price-desc">Multi-service · Full brand projects</div>
+      <ul class="price-features">
+        <li>Multiple services combined</li>
+        <li>Unlimited revisions</li>
+        <li>Priority 24hr delivery</li>
+        <li>Brand strategy consultation</li>
+        <li>Source files included</li>
+        <li>Post-delivery support</li>
+      </ul>
+      <a href="https://wa.me/923125446861?text=Hi%20Faizan%2C%20professional%20package!" target="_blank" class="btn-red" style="display:block;text-align:center;margin-top:auto;justify-content:center;">Discuss Project</a>
+    </div>
+    <div class="price-card">
+      <div class="price-name">Monthly Retainer</div>
+      <div class="price-amount">Monthly</div>
+      <div class="price-desc">Ongoing partnership · Full management</div>
+      <ul class="price-features">
+        <li>Full social media management</li>
+        <li>Daily/weekly content creation</li>
+        <li>Monthly analytics reports</li>
+        <li>Ad campaign management</li>
+        <li>Same-day response guarantee</li>
+        <li>Dedicated monthly strategy</li>
+      </ul>
+      <a href="https://wa.me/923125446861?text=Hi%20Faizan%2C%20monthly%20retainer!" target="_blank" class="btn-red" style="display:block;text-align:center;margin-top:auto;justify-content:center;">Contact Me</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT + CONNECT -->
+<section class="section section-alt" id="contact">
+  <div class="fu">
+    <div class="sec-label">Get In Touch</div>
+    <h2 class="sec-title">Let's Work Together</h2>
+  </div>
+  <div class="contact-grid fu">
+    <div class="c-info">
+      <h3>Ready to grow your brand?</h3>
+      <p>Whether you need a single service or a complete digital strategy, I'm here to help. Fast communication, professional delivery, and results that speak for themselves.</p>
+      <div class="c-item"><div class="c-icon"><i class="fas fa-map-marker-alt" style="color:var(--red);font-size:16px;"></i></div><div><div class="c-lbl">Location</div><div class="c-val">Pakistan · Remote Worldwide</div></div></div>
+      <div class="c-item"><div class="c-icon"><i class="fab fa-linkedin" style="color:var(--red);font-size:16px;"></i></div><div><div class="c-lbl">LinkedIn</div><div class="c-val"><a href="https://www.linkedin.com/in/faizankhadim" target="_blank">linkedin.com/in/faizankhadim</a></div></div></div>
+      <div class="c-item"><div class="c-icon"><i class="fab fa-instagram" style="color:var(--red);font-size:16px;"></i></div><div><div class="c-lbl">Instagram</div><div class="c-val"><a href="https://www.instagram.com/ifaizankhadim" target="_blank">@ifaizankhadim</a></div></div></div>
+      <div class="c-item"><div class="c-icon"><i class="fab fa-snapchat" style="color:var(--red);font-size:16px;"></i></div><div><div class="c-lbl">Snapchat</div><div class="c-val"><a href="https://www.snapchat.com/add/ifaizankhadim" target="_blank">ifaizankhadim</a></div></div></div>
+      <div class="c-item"><div class="c-icon"><i class="fas fa-envelope" style="color:var(--red);font-size:16px;"></i></div><div><div class="c-lbl">Email</div><div class="c-val"><a href="mailto:ifaizankhadim@gmail.com">ifaizankhadim@gmail.com</a></div></div></div>
+      <div class="wa-box">
+        <div class="wa-box-icon"><i class="fab fa-whatsapp" style="color:#fff;font-size:22px;"></i></div>
+        <div class="wa-box-text">
+          <h4>WhatsApp — Fastest Response</h4>
+          <p>Usually reply within 1 hour!</p>
+          <a href="https://wa.me/923125446861?text=Hi%20Faizan%2C%20I%20want%20to%20discuss%20a%20project!" target="_blank" class="wa-msg-btn">
+            <i class="fab fa-whatsapp"></i> Message on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="c-form">
+      <div class="fg"><label>Your Name</label><input type="text" placeholder="Enter your full name"/></div>
+      <div class="fg"><label>Email Address</label><input type="email" placeholder="your@email.com"/></div>
+      <div class="fg"><label>Service Needed</label>
+        <select>
+          <option>Video Editing & Production</option>
+          <option>Graphic Design & Brand Identity</option>
+          <option>Social Media Management</option>
+          <option>Digital Marketing & SEO</option>
+          <option>Meta Ads & Google Ads</option>
+          <option>Website Design</option>
+          <option>CV & Resume Design</option>
+          <option>Content Creation & Strategy</option>
+          <option>Live Streaming Setup (OBS)</option>
+          <option>Virtual Assistance</option>
+          <option>Digital Skills Training</option>
+          <option>Other / Multiple Services</option>
+        </select>
+      </div>
+      <div class="fg"><label>Budget Range</label>
+        <select>
+          <option>Contact for pricing</option>
+          <option>Under PKR 5,000</option>
+          <option>PKR 5,000 – 15,000</option>
+          <option>PKR 15,000 – 50,000</option>
+          <option>PKR 50,000+</option>
+          <option>Under $50</option>
+          <option>$50 – $200</option>
+          <option>$200 – $500</option>
+          <option>$500+</option>
+        </select>
+      </div>
+      <div class="fg"><label>Your Message</label><textarea placeholder="Tell me about your project, goals, timeline and requirements..."></textarea></div>
+      <button class="submit-btn" onclick="sendMsg()">Send via WhatsApp →</button>
+    </div>
+  </div>
+
+  <!-- CONNECT & FOLLOW — inside contact section -->
+  <div style="margin-top:64px;" class="fu">
+    <div class="sec-label">Connect &amp; Follow</div>
+    <h2 class="sec-title" style="margin-bottom:6px;">Find Me On</h2>
+    <p class="sec-sub" style="margin-bottom:32px;">Follow &amp; connect across all platforms for updates, tutorials and behind-the-scenes content</p>
+
+    <!-- YouTube Subscribe -->
+    <div style="display:flex;justify-content:center;margin-bottom:28px;">
+      <div class="g-ytsubscribe" data-channelid="UCa9YnZxor9jG1hAd1LlhnWA" data-layout="full" data-count="default" data-theme="default"></div>
+    </div>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <div class="social-grid">
+      <!-- Order: LinkedIn, GitHub, YouTube, Instagram, TikTok, Snapchat, Pinterest, WA Channel, Email -->
+      <a href="https://www.linkedin.com/in/faizankhadim" target="_blank" class="social-card sc-li">
+        <i class="fab fa-linkedin"></i>
+        <div><h3>LinkedIn</h3><p>Faizan Khadim</p></div>
+      </a>
+      <a href="https://github.com/WhyFaiz" target="_blank" class="social-card sc-gh">
+        <i class="fab fa-github"></i>
+        <div><h3>GitHub</h3><p>@WhyFaiz</p></div>
+      </a>
+      <a href="https://www.youtube.com/@ThePDST" target="_blank" class="social-card sc-yt">
+        <i class="fab fa-youtube"></i>
+        <div><h3>YouTube</h3><p>Digital Skills Training</p></div>
+      </a>
+      <a href="https://www.instagram.com/ifaizankhadim/" target="_blank" class="social-card sc-insta">
+        <i class="fab fa-instagram"></i>
+        <div><h3>Instagram</h3><p>@iFaizanKhadim</p></div>
+      </a>
+      <a href="https://www.tiktok.com/@ifaizankhadim" target="_blank" class="social-card sc-tik">
+        <i class="fab fa-tiktok"></i>
+        <div><h3>TikTok</h3><p>@iFaizanKhadim</p></div>
+      </a>
+      <a href="https://www.snapchat.com/add/ifaizankhadim" target="_blank" class="social-card sc-snap">
+        <i class="fab fa-snapchat"></i>
+        <div><h3>Snapchat</h3><p>@iFaizanKhadim</p></div>
+      </a>
+      <a href="https://www.pinterest.com/iFaizanKhadim" target="_blank" class="social-card sc-pin">
+        <i class="fab fa-pinterest"></i>
+        <div><h3>Pinterest</h3><p>@iFaizanKhadim</p></div>
+      </a>
+      <a href="https://whatsapp.com/channel/0029VbCjlC06LwHdBTg9sB39" target="_blank" class="social-card sc-wa">
+        <i class="fab fa-whatsapp"></i>
+        <div><h3>WhatsApp Channel</h3><p>Digital Skills Training</p></div>
+      </a>
+      <a href="mailto:ifaizankhadim@gmail.com" class="social-card sc-email">
+        <i class="fas fa-envelope"></i>
+        <div><h3>Email</h3><p>ifaizankhadim@gmail.com</p></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><img src="logo.webp" alt="Faizan Khadim"/></div>
+  <div class="footer-tagline">Faizan Khadim · Digital Services Expert · 7+ Years · Pakistan</div>
+  <div class="footer-nav">
+    <a href="#about">About</a><a href="#services">Services</a><a href="#portfolio">Portfolio</a>
+    <a href="#skills">Skills</a><a href="#reviews">Reviews</a><a href="#training">Training</a>
+    <a href="#pricing">Pricing</a><a href="#contact">Contact</a>
+  </div>
+  <div class="footer-socials">
+    <a href="https://www.linkedin.com/in/faizankhadim" target="_blank" class="soc-btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    <a href="https://www.instagram.com/ifaizankhadim" target="_blank" class="soc-btn"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="https://www.tiktok.com/@ifaizankhadim" target="_blank" class="soc-btn"><i class="fab fa-tiktok"></i> TikTok</a>
+    <a href="https://www.snapchat.com/add/ifaizankhadim" target="_blank" class="soc-btn"><i class="fab fa-snapchat"></i> Snapchat</a>
+    <a href="https://wa.me/923125446861" target="_blank" class="soc-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    
+    <a href="https://github.com/WhyFaiz" target="_blank" class="soc-btn"><i class="fab fa-github"></i> GitHub</a>
+    <a href="https://www.pinterest.com/iFaizanKhadim" target="_blank" class="soc-btn"><i class="fab fa-pinterest"></i> Pinterest</a>
+  </div>
+  <div class="footer-copy">© 2026 Faizan Khadim. All rights reserved. Designed &amp; Developed with ❤️ in Pakistan.</div>
+</footer>
+
+<!-- FLOATING -->
+<div class="float-wrap">
+  <a href="#contact" class="f-hire">🚀 Hire Me Now</a>
+  <a href="https://wa.me/923125446861?text=Hi%20Faizan!" target="_blank" class="f-wa">
+    <i class="fab fa-whatsapp" style="color:#fff;font-size:22px;"></i>
+  </a>
+</div>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
+document.addEventListener('click',function(e){
+  var m=document.getElementById('mobileMenu'),b=document.querySelector('.hamburger');
+  if(m.classList.contains('open')&&!m.contains(e.target)&&!b.contains(e.target))m.classList.remove('open');
+});
+var fo=new IntersectionObserver(function(e){e.forEach(function(el){if(el.isIntersecting)el.target.classList.add('vis');});},{threshold:0.07});
+document.querySelectorAll('.fu').forEach(function(el){fo.observe(el);});
+var so=new IntersectionObserver(function(e){e.forEach(function(el){if(el.isIntersecting){el.target.querySelectorAll('.skill-fill').forEach(function(b){b.style.width=b.getAttribute('data-width')+'%';});so.unobserve(el.target);}});},{threshold:0.2});
+document.querySelectorAll('.skills-wrap').forEach(function(el){so.observe(el);});
+function countUp(el,target,dur){var s=0,step=target/(dur/16),t=setInterval(function(){s+=step;if(s>=target){s=target;clearInterval(t);}var f=el.childNodes[0];if(f&&f.nodeType===3)f.textContent=Math.floor(s);},16);}
+var co=new IntersectionObserver(function(e){e.forEach(function(el){if(el.isIntersecting){el.target.querySelectorAll('.stat-big[data-count]').forEach(function(b){countUp(b,parseInt(b.getAttribute('data-count')),1500);});co.unobserve(el.target);}});},{threshold:0.4});
+var sb=document.querySelector('.stats-band');if(sb)co.observe(sb);
+var allS=document.querySelectorAll('section[id]'),allN=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',function(){
+  var pos=window.scrollY+110,cur='';
+  allS.forEach(function(s){if(s.offsetTop<=pos&&(s.offsetTop+s.offsetHeight)>pos)cur=s.id;});
+  allN.forEach(function(a){a.classList.remove('active');if(a.getAttribute('href')==='#'+cur)a.classList.add('active');});
+});
+function sendMsg(){
+  var n=document.querySelector('.c-form input[type=text]').value.trim();
+  var e=document.querySelector('.c-form input[type=email]').value.trim();
+  var s=document.querySelector('.c-form select').value;
+  var m=document.querySelector('.c-form textarea').value.trim();
+  if(!n){alert('Please enter your name.');return;}
+  window.open('https://wa.me/923125446861?text='+encodeURIComponent('Hi Faizan! Name: '+n+'. Email: '+e+'. Service: '+s+'. Message: '+m),'_blank');
+}
+</script>
+</body>
+</html>
